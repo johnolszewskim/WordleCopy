@@ -35,44 +35,7 @@ struct ContentView: View {
             }
             .padding()
             
-            #warning("refactor keyboard")
-            VStack {
-                HStack(spacing: 5) {
-                    
-                    ForEach(topRow, id: \.self) { letter in
-                        Key(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
-                            let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
-                        }
-                        .disabled(gameController.gameIsOver)
-                    }
-                }
-                
-                HStack(spacing: 5){
-                    
-                    ForEach(middleRow, id: \.self) { letter in
-                        Key(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
-                            let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
-                        }
-                        .disabled(gameController.gameIsOver)
-                    }
-                }
-                
-                HStack(spacing: 5){
-                    
-                    ForEach(bottomRow, id: \.self) { letter in
-                        Key(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
-                            let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
-                        }
-                        .disabled(gameController.gameIsOver)
-                    }
-                    
-                    Button("Guess")  {
-                        gameController.guess()
-                    }
-                    .disabled(!gameController.guessIsEnabled)
-                }
-            }
-            .padding()
+            KeyboardView(gameController: $gameController)
         }
     }
     
