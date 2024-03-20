@@ -123,7 +123,9 @@ class WorldGameViewController {
         
         for i in 0..<result.count {
             // add result for letter to grid
-            resultGrid[currentGuessIndex][i] = result[i]
+            withAnimation(.easeInOut(duration: 0.5).delay(0.5*Double(i))) {
+                resultGrid[currentGuessIndex][i] = result[i]
+            }
             
             // assign appropriate results to guessed letters
             let guessedLetter = letterGrid[currentGuessIndex][i]
@@ -135,7 +137,10 @@ class WorldGameViewController {
             }
         }
         
-        gameIsWon = win
+        withAnimation(.bouncy) {
+            gameIsWon = win
+        }
+        
         currentGuessIndex += 1
         currentLetterIndex = 0
     }
