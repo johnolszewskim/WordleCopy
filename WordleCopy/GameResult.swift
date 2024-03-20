@@ -12,8 +12,14 @@ import SwiftData
 class GameResult {
     
     var wordle: String
+    var letterGrid: [[String]]
+    var resultGrid: [[GuessResult]]
+    var didWin: Bool
     
-    init(wordle: String) {
+    init(wordle: String, letterGrid: [[String]], resultGrid: [[GuessResult]], didWin: Bool) {
         self.wordle = wordle
+        self.letterGrid = letterGrid
+        self.resultGrid = resultGrid
+        self.didWin = didWin
     }
 }

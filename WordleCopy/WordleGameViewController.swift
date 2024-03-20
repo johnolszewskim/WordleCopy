@@ -54,6 +54,9 @@ class WorldGameViewController {
         "X" : GuessResult.NOT_GUESSED,
         "Y" : GuessResult.NOT_GUESSED,
         "Z": GuessResult.NOT_GUESSED]
+//    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { letter in
+//        [letter: GuessResult.NOT_GUESSED]
+//    }
     var wordleLength = 5
     var numberOfGuesses = 6
     var currentGuessIndex = 5 // 0 testing
@@ -150,7 +153,7 @@ class WorldGameViewController {
         currentLetterIndex = 0
         
         if gameIsOver {
-            savedResultsManager.save(GameResult(wordle: game.wordle))
+            savedResultsManager.save(GameResult(wordle: game.wordle, letterGrid: letterGrid, resultGrid: resultGrid, didWin: gameIsWon))
         }
     }
     

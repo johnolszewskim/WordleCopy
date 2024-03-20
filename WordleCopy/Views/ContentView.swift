@@ -15,7 +15,7 @@ struct ContentView: View {
     
     @State private var gameController: WorldGameViewController = WorldGameViewController(savedResultsManager: SavedResultsManager())
     @State private var historySheetIsShowing = false
-
+    
     var body: some View {
         NavigationView {
             
@@ -31,14 +31,7 @@ struct ContentView: View {
                     ForEach(0..<gameController.numberOfGuesses, id: \.self) { guessIndex in
                         HStack(spacing: 5) {
                             ForEach(0..<gameController.wordleLength, id: \.self) { letterIndex in
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .aspectRatio(1, contentMode: .fit)
-                                        .foregroundColor(gameController.parseColor(gameController.resultGrid[guessIndex][letterIndex]))
-                                    
-                                    Text(gameController.letterGrid[guessIndex][letterIndex])
-                                        .font(.title2)
-                                }
+                                GridSquareView(letter: gameController.letterGrid[guessIndex][letterIndex], color: gameController.parseColor(gameController.resultGrid[guessIndex][letterIndex]))
                             }
                         }
                     }
@@ -72,8 +65,11 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $historySheetIsShowing, content: {
-                List(savedGames, id: \.self) { result in
-                    Text(result.wordle)
+                NavigationView {
+                    List(savedGames, id: \.self) { result in
+                        GameHistoryView(result: result, colorParser: gameController.parseColor)
+                    }
+                    .navigationTitle("History")
                 }
             })
             .task {

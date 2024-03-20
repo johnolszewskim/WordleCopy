@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GuessResult {
+enum GuessResult: Codable {
     case NOT_GUESSED
     case CORRECT
     case WRONG

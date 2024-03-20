@@ -9,9 +9,14 @@ import Foundation
 
 class WordleGame {
     
-    var wordle: String = "SWIFT"
+    
+    var wordle: String
     var wordleLength: Int {
         return wordle.count
+    }
+    
+    init(_ wordle: String? = nil) {
+        self.wordle = wordle ?? WordleGame.getRandomWordle()
     }
     
     func guess(_ guess: [String]) -> [GuessResult] {
@@ -34,7 +39,22 @@ class WordleGame {
             result.append(wordle.contains(guess[i]) ? GuessResult.WRONG_INDEX : GuessResult.WRONG)
         }
         
-    
+        
         return result
+    }
+    
+    static func getRandomWordle() -> String {
+        do {
+            if let bundlePath = Bundle.main.path(forResource: "valid-wordles.txt", ofType: nil) {
+                let stringContent = try String(contentsOfFile: bundlePath).uppercased()
+                let wordles = stringContent.split(whereSeparator: \.isNewline).map { s in
+                    String(s)
+                }
+                return wordles.randomElement()!
+            }
+        } catch {
+            fatalError("Error reading file: \(error)")
+        }
+        return "PAUSE"
     }
 }
