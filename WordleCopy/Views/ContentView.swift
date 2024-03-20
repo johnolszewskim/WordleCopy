@@ -5,23 +5,21 @@
 //  Created by Johnny O on 1/28/24.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
     
-    let topRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
-    let middleRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
-    let bottomRow = ["Z", "X", "C", "V", "B", "N", "M"]
+    @Environment(\.modelContext) private var modelContext
+    @Query var savedGames: [GameResult]
     
-    @State private var gameController = WorldGameViewController()
+    @State private var gameController: WorldGameViewController = WorldGameViewController(savedResultsManager: SavedResultsManager())
     @State private var historySheetIsShowing = false
 
     var body: some View {
         NavigationView {
             
             VStack {
-//                
-//                Spacer()
                 
                 Text(!gameController.gameIsOver ? "Wordle" : gameController.gameIsWonMessage)
                     .font(.largeTitle.bold())
@@ -51,15 +49,10 @@ struct ContentView: View {
                     KeyboardView(gameController: $gameController)
                 } else {
                     HStack {
-                        Button("Share") {
-                            
-                        }
-                        .buttonStyle(.bordered)
-                        .clipShape(.capsule)
                         
                         Button("New Game") {
                             withAnimation(.bouncy) {
-                                gameController = WorldGameViewController()
+                                gameController = WorldGameViewController(savedResultsManager: SavedResultsManager(modelContext: modelContext))
                             }
                         }
                         .buttonStyle(.bordered)
@@ -79,8 +72,13 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $historySheetIsShowing, content: {
-                Text("history")
+                List(savedGames, id: \.self) { result in
+                    Text(result.wordle)
+                }
             })
+            .task {
+                gameController.savedResultsManager.modelContext = modelContext
+            }
         }
     }
 }

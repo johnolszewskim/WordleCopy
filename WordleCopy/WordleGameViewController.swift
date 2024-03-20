@@ -5,12 +5,14 @@
 //  Created by Johnny O on 2/27/24.
 //
 
-import Foundation
+import SwiftData
 import SwiftUI
 import UIKit
 
 @Observable
 class WorldGameViewController {
+    
+    var savedResultsManager: SavedResultsManager!
     
     var game = WordleGame()
     var letterGrid: [[String]] = [["","","","",""],
@@ -81,6 +83,10 @@ class WorldGameViewController {
         return gameIsWon ? "You win!" : "Nice try!"
     }
     
+    init(savedResultsManager: SavedResultsManager) {
+        self.savedResultsManager = savedResultsManager
+    }
+    
     func placeNextLetter(_ letter: String) -> Bool {
         
         // letters should be enabled if game is over in the first place
@@ -142,6 +148,10 @@ class WorldGameViewController {
             currentGuessIndex += 1
         }
         currentLetterIndex = 0
+        
+        if gameIsOver {
+            savedResultsManager.save(GameResult(wordle: game.wordle))
+        }
     }
     
     func parseColor(_ result: GuessResult) -> Color {

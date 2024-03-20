@@ -13,5 +13,6 @@ struct WordleCopyApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [GameResult.self])
     }
 }
