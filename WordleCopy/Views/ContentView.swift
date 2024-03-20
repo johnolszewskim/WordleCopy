@@ -30,7 +30,7 @@ struct ContentView: View {
                             ZStack{
                                 RoundedRectangle(cornerRadius: 10)
                                     .aspectRatio(1, contentMode: .fit)
-                                    .foregroundColor(parseColor(gameController.resultGrid[guessIndex][letterIndex]))
+                                    .foregroundColor(gameController.parseColor(gameController.resultGrid[guessIndex][letterIndex]))
                                     
                                 Text(gameController.letterGrid[guessIndex][letterIndex])
                             }
@@ -43,19 +43,6 @@ struct ContentView: View {
             if !gameController.gameIsWon {
                 KeyboardView(gameController: $gameController)
             }
-        }
-    }
-    
-    private func parseColor(_ result: GuessResult) -> Color {
-        switch result {
-        case .NOT_GUESSED:
-            return .gray
-        case .CORRECT:
-            return .green
-        case .WRONG:
-            return .red
-        case .WRONG_INDEX:
-            return .yellow
         }
     }
 }

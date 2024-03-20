@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import UIKit
 
 @Observable
@@ -137,5 +138,18 @@ class WorldGameViewController {
         gameIsWon = win
         currentGuessIndex += 1
         currentLetterIndex = 0
+    }
+    
+    func parseColor(_ result: GuessResult) -> Color {
+        switch result {
+        case .NOT_GUESSED:
+            return .gray
+        case .CORRECT:
+            return .green
+        case .WRONG:
+            return .red
+        case .WRONG_INDEX:
+            return .yellow
+        }
     }
 }

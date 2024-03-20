@@ -20,7 +20,7 @@ struct KeyboardView: View {
             HStack(spacing: 5) {
                 
                 ForEach(topRow, id: \.self) { letter in
-                    KeyView(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
+                    KeyView(letter: letter, color: gameController.parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
                         let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
                     }
                     .disabled(gameController.gameIsOver)
@@ -30,7 +30,7 @@ struct KeyboardView: View {
             HStack(spacing: 5){
                 
                 ForEach(middleRow, id: \.self) { letter in
-                    KeyView(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
+                    KeyView(letter: letter, color: gameController.parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
                         let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
                     }
                     .disabled(gameController.gameIsOver)
@@ -46,7 +46,7 @@ struct KeyboardView: View {
                 }
                 
                 ForEach(bottomRow, id: \.self) { letter in
-                    KeyView(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
+                    KeyView(letter: letter, color: gameController.parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
                         let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
                     }
                     .disabled(gameController.gameIsOver)
@@ -59,20 +59,6 @@ struct KeyboardView: View {
             }
         }
         .padding()
-    }
-    
-    #warning("duplicate parseColor() methods")
-    private func parseColor(_ result: GuessResult) -> Color {
-        switch result {
-        case .NOT_GUESSED:
-            return .gray
-        case .CORRECT:
-            return .green
-        case .WRONG:
-            return .red
-        case .WRONG_INDEX:
-            return .yellow
-        }
     }
 }
 
