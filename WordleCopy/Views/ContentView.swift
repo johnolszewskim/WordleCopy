@@ -55,7 +55,9 @@ struct ContentView: View {
                     .clipShape(.capsule)
                     
                     Button("New Game") {
-                        gameController = WorldGameViewController()
+                        withAnimation(.bouncy) {
+                            gameController = WorldGameViewController()
+                        }
                     }
                     .buttonStyle(.bordered)
                     .clipShape(.capsule)
