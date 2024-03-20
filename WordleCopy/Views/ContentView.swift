@@ -42,6 +42,20 @@ struct ContentView: View {
             
             if !gameController.gameIsWon {
                 KeyboardView(gameController: $gameController)
+            } else {
+                HStack {
+                    Button("Share") {
+                        
+                    }
+                    .buttonStyle(.bordered)
+                    .clipShape(.capsule)
+                    
+                    Button("New Game") {
+                        gameController = WorldGameViewController()
+                    }
+                    .buttonStyle(.bordered)
+                    .clipShape(.capsule)
+                }
             }
         }
     }

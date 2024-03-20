@@ -80,9 +80,6 @@ class WorldGameViewController {
     
     func placeNextLetter(_ letter: String) -> Bool {
         
-//        print("placeNextLetter(\(letter)) currentGuessIndex: \(currentGuessIndex) currentLetterIndex: \(currentLetterIndex)")
-//        print(letterGrid[currentGuessIndex])
-        
         // letters should be enabled if game is over in the first place
         if gameIsOver {
             return false
