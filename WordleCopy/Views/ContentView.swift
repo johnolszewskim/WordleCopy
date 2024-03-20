@@ -18,7 +18,12 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
+            
+            Text("Wordle")
+                .font(.title.bold())
+            
             VStack(spacing: 5) {
+                //Create grid
                 ForEach(0..<gameController.numberOfGuesses, id: \.self) { guessIndex in
                     HStack(spacing: 5) {
                         ForEach(0..<gameController.wordleLength, id: \.self) { letterIndex in
@@ -35,7 +40,9 @@ struct ContentView: View {
             }
             .padding()
             
-            KeyboardView(gameController: $gameController)
+            if !gameController.gameIsWon {
+                KeyboardView(gameController: $gameController)
+            }
         }
     }
     
@@ -55,25 +62,6 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-}
-
-struct Key: View {
-    var letter: String
-    var color: Color
-    var action: () -> ()
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(color)
-            Text(letter)
-        }
-//        .frame(width: 35, height: 65)
-        .aspectRatio(3/5, contentMode: .fit)
-        .onTapGesture {
-            action()
-        }
-    }
 }
 
 

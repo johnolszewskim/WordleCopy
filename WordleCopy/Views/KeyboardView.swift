@@ -20,7 +20,7 @@ struct KeyboardView: View {
             HStack(spacing: 5) {
                 
                 ForEach(topRow, id: \.self) { letter in
-                    Key(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
+                    KeyView(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
                         let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
                     }
                     .disabled(gameController.gameIsOver)
@@ -30,7 +30,7 @@ struct KeyboardView: View {
             HStack(spacing: 5){
                 
                 ForEach(middleRow, id: \.self) { letter in
-                    Key(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
+                    KeyView(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
                         let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
                     }
                     .disabled(gameController.gameIsOver)
@@ -39,8 +39,14 @@ struct KeyboardView: View {
             
             HStack(spacing: 5){
                 
+                Button {
+                    let _ = gameController.removeLastLetter()
+                } label: {
+                    Image(systemName: "delete.left.fill")
+                }
+                
                 ForEach(bottomRow, id: \.self) { letter in
-                    Key(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
+                    KeyView(letter: letter, color: parseColor(gameController.guessedLetters[letter] ?? .NOT_GUESSED)) {
                         let _ = gameController.placeNextLetter(letter) // will use for haptic feedback
                     }
                     .disabled(gameController.gameIsOver)

@@ -62,6 +62,10 @@ class WorldGameViewController {
         
         return false
     }
+    
+    // if the player has:
+    // - used all their guesses or
+    // - won the game
     var gameIsOver: Bool {
         if currentGuessIndex == numberOfGuesses {
             return true
@@ -94,6 +98,17 @@ class WorldGameViewController {
         
         letterGrid[currentGuessIndex][currentLetterIndex] = letter
         currentLetterIndex += 1
+        
+        return true
+    }
+    
+    func removeLastLetter() -> Bool {
+        if currentLetterIndex == 0 {
+            return false
+        }
+        
+        currentLetterIndex -= 1
+        letterGrid[currentGuessIndex][currentLetterIndex] = ""
         
         return true
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		312DA3122BAB474100A515EC /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312DA3112BAB474100A515EC /* KeyView.swift */; };
 		31C80A202B66D1B700BD848B /* WordleCopyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C80A1F2B66D1B700BD848B /* WordleCopyApp.swift */; };
 		31C80A222B66D1B700BD848B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C80A212B66D1B700BD848B /* ContentView.swift */; };
 		31C80A242B66D1B800BD848B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C80A232B66D1B800BD848B /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		312DA3112BAB474100A515EC /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 		31C80A1C2B66D1B700BD848B /* WordleCopy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordleCopy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C80A1F2B66D1B700BD848B /* WordleCopyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleCopyApp.swift; sourceTree = "<group>"; };
 		31C80A212B66D1B700BD848B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		312DA3132BAB47E800A515EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				31C80A212B66D1B700BD848B /* ContentView.swift */,
+				31FF6DEF2B8FAFFC003C2183 /* KeyboardView.swift */,
+				312DA3112BAB474100A515EC /* KeyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		31C80A132B66D1B700BD848B = {
 			isa = PBXGroup;
 			children = (
@@ -60,9 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				31C80A1F2B66D1B700BD848B /* WordleCopyApp.swift */,
-				31C80A212B66D1B700BD848B /* ContentView.swift */,
+				312DA3132BAB47E800A515EC /* Views */,
 				31FF6DE92B8EAD01003C2183 /* WordleGameViewController.swift */,
-				31FF6DEF2B8FAFFC003C2183 /* KeyboardView.swift */,
 				31FF6DEB2B8EAD23003C2183 /* WordleGame.swift */,
 				31FF6DED2B8EE689003C2183 /* GuessResult.swift */,
 				31C80A232B66D1B800BD848B /* Assets.xcassets */,
@@ -152,6 +163,7 @@
 				31C80A222B66D1B700BD848B /* ContentView.swift in Sources */,
 				31FF6DEC2B8EAD23003C2183 /* WordleGame.swift in Sources */,
 				31C80A202B66D1B700BD848B /* WordleCopyApp.swift in Sources */,
+				312DA3122BAB474100A515EC /* KeyView.swift in Sources */,
 				31FF6DF02B8FAFFC003C2183 /* KeyboardView.swift in Sources */,
 				31FF6DEE2B8EE689003C2183 /* GuessResult.swift in Sources */,
 				31FF6DEA2B8EAD01003C2183 /* WordleGameViewController.swift in Sources */,
