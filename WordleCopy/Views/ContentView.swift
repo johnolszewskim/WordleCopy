@@ -19,8 +19,12 @@ struct ContentView: View {
         
         VStack {
             
-            Text("Wordle")
-                .font(.title.bold())
+            Spacer()
+            
+            Text(!gameController.gameIsOver ? "Wordle" : gameController.gameIsWonMessage)
+                .font(.largeTitle.bold())
+            
+            Spacer()
             
             VStack(spacing: 5) {
                 //Create grid
@@ -40,7 +44,7 @@ struct ContentView: View {
             }
             .padding()
             
-            if !gameController.gameIsWon {
+            if !gameController.gameIsOver {
                 KeyboardView(gameController: $gameController)
             } else {
                 HStack {
@@ -57,6 +61,8 @@ struct ContentView: View {
                     .clipShape(.capsule)
                 }
             }
+            
+            Spacer()
         }
     }
 }

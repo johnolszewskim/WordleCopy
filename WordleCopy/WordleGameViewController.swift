@@ -54,7 +54,7 @@ class WorldGameViewController {
         "Z": GuessResult.NOT_GUESSED]
     var wordleLength = 5
     var numberOfGuesses = 6
-    var currentGuessIndex = 0
+    var currentGuessIndex = 5 // 0 testing
     var currentLetterIndex = 0
     var guessIsEnabled: Bool {
         if currentLetterIndex == wordleLength {
@@ -77,6 +77,9 @@ class WorldGameViewController {
         return false
     }
     var gameIsWon: Bool = false
+    var gameIsWonMessage: String {
+        return gameIsWon ? "You win!" : "Nice try!"
+    }
     
     func placeNextLetter(_ letter: String) -> Bool {
         
@@ -136,9 +139,8 @@ class WorldGameViewController {
         
         withAnimation(.bouncy) {
             gameIsWon = win
+            currentGuessIndex += 1
         }
-        
-        currentGuessIndex += 1
         currentLetterIndex = 0
     }
     
