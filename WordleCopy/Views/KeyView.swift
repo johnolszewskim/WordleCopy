@@ -9,7 +9,7 @@ import SwiftUI
 
 struct KeyView: View {
     
-    var letter: String
+    var label: String
     var color: Color
     var action: () -> ()
     
@@ -18,18 +18,41 @@ struct KeyView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
                 .foregroundColor(color)
-            Text(letter)
+            Text(label)
         }
-        //        .frame(width: 35, height: 65)
-        .aspectRatio(3/5, contentMode: .fit)
+        .frame(width: 32, height: 60)
         .onTapGesture {
             action()
         }
     }
+    
+    
+}
+
+struct KeyFormat: ViewModifier {
+    
+    var keyType: KeyType
+    
+    func body(content: Content) -> some View {
+        
+        switch keyType {
+        case .letter:
+            content
+                .frame(width: 35, height: 65)
+        case .action:
+            content
+                .frame(width: 65, height: 65)
+                .background(.purple)
+        }
+    }
+}
+
+enum KeyType {
+    case letter, action
 }
 
 #Preview {
-    KeyView(letter: "A", color: .blue) {
+    KeyView(label: "A", color: .blue) {
         
     }
 }
