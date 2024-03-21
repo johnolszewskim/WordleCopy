@@ -11,21 +11,26 @@ struct KeyView: View {
     
     var label: String
     var color: Color
+    var keyType: KeyType
     var action: () -> ()
     
     var body: some View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(color)
-            Text(label)
+                .foregroundColor(keyType == .letter ? color : .mint)
+            if keyType == .delete || keyType == .guess {
+                Image(systemName: label)
+            } else {
+                Text(label)
+            }
         }
-        .frame(width: 32, height: 60)
+//        .frame(width: 32, height: 60)
+        .formatKey(as: keyType)
         .onTapGesture {
             action()
         }
     }
-    
     
 }
 
@@ -38,21 +43,25 @@ struct KeyFormat: ViewModifier {
         switch keyType {
         case .letter:
             content
-                .frame(width: 35, height: 65)
-        case .action:
+                .frame(width: 30, height: 60)
+        case .delete:
             content
-                .frame(width: 65, height: 65)
-                .background(.purple)
+                .frame(width: 60, height: 60)
+        case .guess:
+            content
+                .frame(width: 60, height: 60)
         }
     }
 }
 
-enum KeyType {
-    case letter, action
+enum KeyType: Hashable {
+    case letter
+    case delete
+    case guess
 }
 
 #Preview {
-    KeyView(label: "A", color: .blue) {
+    KeyView(label: "A", color: .blue, keyType: .letter) {
         
     }
 }
