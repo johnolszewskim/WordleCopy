@@ -125,7 +125,9 @@ class WorldGameViewController {
     
     func guess() {
         
-        #warning("check for word in dictionary")
+        if !game.isValidWord(letterGrid[currentGuessIndex].joined()) {
+            return
+        }
         
         let result = game.guess(letterGrid[currentGuessIndex])
         var win = true

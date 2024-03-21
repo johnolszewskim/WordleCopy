@@ -26,12 +26,23 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                VStack(spacing: 5) {
-                    //Create grid
-                    ForEach(0..<gameController.numberOfGuesses, id: \.self) { guessIndex in
+                VStack {
+                    VStack(spacing: 5) {
+                        //Create grid
+                        ForEach(0..<gameController.numberOfGuesses, id: \.self) { guessIndex in
+                            HStack(spacing: 5) {
+                                ForEach(0..<gameController.wordleLength, id: \.self) { letterIndex in
+                                    GridSquareView(letter: gameController.letterGrid[guessIndex][letterIndex], color: gameController.parseColor(gameController.resultGrid[guessIndex][letterIndex]))
+                                }
+                            }
+                        }
+                    }
+                    
+                    if gameController.gameIsOver {
                         HStack(spacing: 5) {
                             ForEach(0..<gameController.wordleLength, id: \.self) { letterIndex in
-                                GridSquareView(letter: gameController.letterGrid[guessIndex][letterIndex], color: gameController.parseColor(gameController.resultGrid[guessIndex][letterIndex]))
+                                let indexAsIndex = gameController.game.wordle.index(gameController.game.wordle.startIndex, offsetBy: letterIndex)
+                                GridSquareView(letter: String(gameController.game.wordle[indexAsIndex]), color: gameController.parseColor(.CORRECT))
                             }
                         }
                     }

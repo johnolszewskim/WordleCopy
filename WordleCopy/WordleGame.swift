@@ -9,14 +9,21 @@ import Foundation
 
 class WordleGame {
     
-    
     var wordle: String
     var wordleLength: Int {
         return wordle.count
     }
+    var validGuesses: [String]!
     
     init(_ wordle: String? = nil) {
         self.wordle = wordle ?? WordleGame.getRandomWordle()
+        self.validGuesses = loadFile("valid-guesses.txt") + loadFile("valid-wordles.txt")
+    }
+    
+    func isValidWord(_ word: String) -> Bool {
+        print("\(word) check")
+        
+        return validGuesses.contains(word.uppercased())
     }
     
     func guess(_ guess: [String]) -> [GuessResult] {
@@ -44,17 +51,37 @@ class WordleGame {
     }
     
     static func getRandomWordle() -> String {
+        
+        var result: [String] = []
         do {
             if let bundlePath = Bundle.main.path(forResource: "valid-wordles.txt", ofType: nil) {
                 let stringContent = try String(contentsOfFile: bundlePath).uppercased()
-                let wordles = stringContent.split(whereSeparator: \.isNewline).map { s in
-                    String(s)
+                result = stringContent.split(whereSeparator: \.isNewline).map { s in
+                    let newStr = String(s).replacingOccurrences(of: "\"", with: "")
+                    return newStr
                 }
-                return wordles.randomElement()!
             }
         } catch {
             fatalError("Error reading file: \(error)")
         }
-        return "PAUSE"
+
+        return result.randomElement()!
+    }
+    
+    private func loadFile(_ filename: String) -> [String] {
+        var result: [String] = []
+        do {
+            if let bundlePath = Bundle.main.path(forResource: filename, ofType: nil) {
+                let stringContent = try String(contentsOfFile: bundlePath).uppercased()
+                result = stringContent.split(whereSeparator: \.isNewline).map { s in
+                    let newStr = String(s).replacingOccurrences(of: "\"", with: "")
+                    return newStr
+                }
+            }
+        } catch {
+            fatalError("Error reading file: \(error)")
+        }
+        
+        return result
     }
 }
