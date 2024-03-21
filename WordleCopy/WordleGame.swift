@@ -18,6 +18,7 @@ class WordleGame {
     init(_ wordle: String? = nil) {
         self.wordle = wordle ?? WordleGame.getRandomWordle()
         self.validGuesses = loadFile("valid-guesses.txt") + loadFile("valid-wordles.txt")
+        print("WORDLE \(self.wordle)")
     }
     
     func isValidWord(_ word: String) -> Bool {

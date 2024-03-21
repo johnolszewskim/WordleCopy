@@ -23,9 +23,7 @@ struct ContentView: View {
                 
                 Text(!gameController.gameIsOver ? "Wordle" : gameController.gameIsWonMessage)
                     .font(.largeTitle.bold())
-                
-                Spacer()
-                
+
                 VStack {
                     VStack(spacing: 5) {
                         //Create grid
@@ -38,7 +36,7 @@ struct ContentView: View {
                         }
                     }
                     
-                    if gameController.gameIsOver {
+                    if gameController.gameIsOver && !gameController.gameIsWon {
                         HStack(spacing: 5) {
                             ForEach(0..<gameController.wordleLength, id: \.self) { letterIndex in
                                 let indexAsIndex = gameController.game.wordle.index(gameController.game.wordle.startIndex, offsetBy: letterIndex)
