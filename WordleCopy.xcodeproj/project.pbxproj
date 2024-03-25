@@ -36,6 +36,7 @@
 		312DA3202BAB993500A515EC /* valid-guesses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valid-guesses.txt"; sourceTree = "<group>"; };
 		312DA3212BAB993500A515EC /* valid-wordles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valid-wordles.txt"; sourceTree = "<group>"; };
 		312DA3242BAD035C00A515EC /* GridGuessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGuessView.swift; sourceTree = "<group>"; };
+		312DA3262BB1286300A515EC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		31C80A1C2B66D1B700BD848B /* WordleCopy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordleCopy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C80A1F2B66D1B700BD848B /* WordleCopyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleCopyApp.swift; sourceTree = "<group>"; };
 		31C80A212B66D1B700BD848B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		31C80A132B66D1B700BD848B = {
 			isa = PBXGroup;
 			children = (
+				312DA3262BB1286300A515EC /* README.md */,
 				31C80A1E2B66D1B700BD848B /* WordleCopy */,
 				31C80A1D2B66D1B700BD848B /* Products */,
 			);
