@@ -20,7 +20,7 @@ struct KeyboardView: View {
             ForEach(0..<3) { i in
                 HStack(spacing: 5) {
                     ForEach(keyboard[i], id: \.self.0) { key in
-                        KeyView(label: key.0, color: gameController.parseColor(gameController.guessedLetters[key.0] ?? .NOT_GUESSED), keyType: key.1) {
+                        KeyView(label: key.0, color: gameController.parseColor(gameController.letterResults[key.0] ?? .NOT_GUESSED), keyType: key.1) {
                             if key.1 == .letter {
                                 let _ = gameController.placeNextLetter(key.0) // will use for haptic feedback
                             } else if key.1 == .delete {
@@ -34,6 +34,6 @@ struct KeyboardView: View {
                 }
             }
         }
-        .padding()
+//        .padding()
     }
 }

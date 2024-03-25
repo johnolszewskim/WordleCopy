@@ -27,7 +27,7 @@ class WorldGameViewController {
                                   [GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED],
                                   [GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED],
                                   [GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED, GuessResult.NOT_GUESSED]]
-    var guessedLetters: [String:GuessResult] = [
+    var letterResults: [String:GuessResult] = [
         "A": GuessResult.NOT_GUESSED,
         "B" : GuessResult.NOT_GUESSED,
         "C" : GuessResult.NOT_GUESSED,
@@ -59,7 +59,7 @@ class WorldGameViewController {
 //    }
     var wordleLength = 5
     var numberOfGuesses = 6
-    var currentGuessIndex = 5 // 0 testing
+    var currentGuessIndex = 0 // testing
     var currentLetterIndex = 0
     var guessIsEnabled: Bool {
         if currentLetterIndex == wordleLength {
@@ -136,11 +136,14 @@ class WorldGameViewController {
             // add result for letter to grid
             withAnimation(.easeInOut(duration: 0.5).delay(0.5*Double(i))) {
                 resultGrid[currentGuessIndex][i] = result[i]
+                
+                // assign appropriate results to guessed letters
+                let guessedLetter = letterGrid[currentGuessIndex][i]
+                letterResults[guessedLetter]! = result[i]
             }
             
-            // assign appropriate results to guessed letters
-            let guessedLetter = letterGrid[currentGuessIndex][i]
-            guessedLetters[guessedLetter]! = result[i]
+            
+            
                            
             // if any letters aren't correct the world is not correct
             if result[i] != GuessResult.CORRECT {
@@ -155,7 +158,7 @@ class WorldGameViewController {
         currentLetterIndex = 0
         
         if gameIsOver {
-            savedResultsManager.save(GameResult(wordle: game.wordle, letterGrid: letterGrid, resultGrid: resultGrid, didWin: gameIsWon))
+            savedResultsManager.save(GameResult(wordle: game.wordle, letterGrid: letterGrid, resultGrid: resultGrid, didWin: gameIsWon, lastGuessIndex: currentGuessIndex-1))
         }
     }
     

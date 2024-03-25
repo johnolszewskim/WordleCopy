@@ -15,11 +15,13 @@ class GameResult {
     var letterGrid: [[String]]
     var resultGrid: [[GuessResult]]
     var didWin: Bool
+    var lastGuessIndex: Int
     
-    init(wordle: String, letterGrid: [[String]], resultGrid: [[GuessResult]], didWin: Bool) {
+    init(wordle: String, letterGrid: [[String]], resultGrid: [[GuessResult]], didWin: Bool, lastGuessIndex: Int) {
         self.wordle = wordle
         self.letterGrid = letterGrid
         self.resultGrid = resultGrid
         self.didWin = didWin
+        self.lastGuessIndex = lastGuessIndex
     }
 }
