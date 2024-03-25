@@ -1,3 +1,7 @@
+<img src="https://github.com/johnolszewskim/WordleCopy/assets/126525927/62f38c49-49bd-4414-bfbd-e42e4cc0d6f1" height="600">
+<img src="https://github.com/johnolszewskim/WordleCopy/assets/126525927/47ec7880-fbee-4e33-b7c6-9ad354c8117e" height="600">
+<img src="https://github.com/johnolszewskim/WordleCopy/assets/126525927/41341c3f-dcfc-4678-a798-0755f88c0bb0" height="600">
+
 #  About
 
 Wordle is a game popularized by the New York Times. In the game you attempt to guess the secret 
